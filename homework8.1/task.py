@@ -1,12 +1,12 @@
 def range_cats_with_hats(num_cats):
-    cats_with_hats = set()
+    cat_hats = {}
+    for cat in range(1, num_cats + 1):
+        cat_hats[cat] = False
     for round_num in range(1, num_cats + 1):
-        for cat_num in range(1, num_cats + 1):
-            if cat_num % round_num == 0:
-                if cat_num in cats_with_hats:
-                    cats_with_hats.remove(cat_num)
-                else:
-                    cats_with_hats.add(cat_num)
+        for cat_num in range(round_num - 1, num_cats, round_num):
+            cat_hats[cat_num + 1] = not cat_hats[cat_num + 1]
+    cats_with_hats = [cat_num for cat_num, has_hat in cat_hats.items()
+                      if has_hat]
     return cats_with_hats
 
 
