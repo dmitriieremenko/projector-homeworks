@@ -2,16 +2,11 @@ import random
 import string
 
 
-def generator():
-    random_int = random.randint(1, 100)
-    return random_int
-
-
 def main():
     naming_all = string.ascii_uppercase
     for file_naming in naming_all:
         file_name = f"{file_naming}.txt"
-        random_int = generator()
+        random_int = random.randint(1, 100)
         with open(file_name, 'w') as file:
             file.write(str(random_int))
     with open('summary.txt', 'w') as summary_file:

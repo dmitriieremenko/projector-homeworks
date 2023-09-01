@@ -2,18 +2,11 @@ import random
 import csv
 
 
-def random_score():
-    return random.randint(0, 1000)
-
-
-def simulation(list_name):
+def simulation(list_name, rounds):
     player_scores = []
     for player in list_name:
-        total_score = 0
-        for _ in range(100):
-            round_score = random_score()
-            total_score += round_score
-        player_scores.append((player, total_score))
+        scores = [random.randint(0, 1000) for _ in range(rounds)]
+        player_scores.extend([(player, score) for score in scores])
     return player_scores
 
 
@@ -25,7 +18,8 @@ list_name = [
     'Мері',
     'Джош'
 ]
-player_scores = simulation(list_name)
+rounds = 100
+player_scores = simulation(list_name, rounds)
 with open('player_scores.csv', 'w', newline='') as csvfile:
     csv_writer = csv.writer(csvfile)
     csv_writer.writerow(['Player name', 'Score'])
