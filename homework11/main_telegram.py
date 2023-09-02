@@ -39,3 +39,6 @@ def handle_message(message):
         gif_urls = search_gif(search_term, api_key, num_results)
         for i, gif_url in enumerate(gif_urls, start=1):
             bot.send_message(message.chat.id, f"{i}. {gif_url}")
+
+
+bot.polling()
