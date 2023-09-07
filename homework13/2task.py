@@ -3,15 +3,15 @@ class Country:
         self.name = name
         self.population = population
 
-    def add(self, other):
-        self.name = self.name + other.name
-        self.population = self.population + other.population
-        return self
+    def __add__(self, other):
+        name_add = self.name + other.name
+        population_add = self.population + other.population
+        return Country(name_add, population_add)
 
 
 bosnia = Country('Bosnia', 10_000_000)
 herzegovina = Country('Herzegovina', 5_000_000)
 
-bosnia_herzegovina = bosnia.add(herzegovina)
+bosnia_herzegovina = bosnia + herzegovina
 print(bosnia_herzegovina.population)
 print(bosnia_herzegovina.name)
