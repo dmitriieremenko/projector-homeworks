@@ -16,9 +16,15 @@ class FastFood(Restaurant):
             if quantity > 0 and quantity <= self.menu[name_food]:
                 total_cost = price_item * quantity
                 self.menu[name_food] -= quantity
-                return f"Загальна вартість замовлення '{name_food}' ({quantity} порцій): {total_cost} грн."
+                return (
+                    f"Загальна вартість замовлення '{name_food}'"
+                    f"({quantity} порцій): {total_cost} грн."
+                )
             else:
-                return f"Некоректна кількість порцій '{name_food}' для замовлення."
+                return (
+                    f"Некоректна кількість порцій '{name_food}'"
+                    "для замовлення."
+                )
         else:
             return f"Страва '{name_food}' не доступна у меню."
 
