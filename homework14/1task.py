@@ -1,12 +1,12 @@
 class Product():
-    def __init__(self, name=str, price=int, quanity=int):
+    def __init__(self, name: str, price: int, quanity: int):
         self.name = name
         self.price = price
         self.quanity = quanity
 
 
 class Book(Product):
-    def __init__(self, name=str, price=int, quanity=int, author=str):
+    def __init__(self, name: str, price: int, quanity: int, author: str):
         super().__init__(name, price, quanity)
         self.author = author
 

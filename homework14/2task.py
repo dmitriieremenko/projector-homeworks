@@ -1,16 +1,16 @@
 class Restaurant:
-    def __init__(self, name=str, cuisine=str, menu=dict):
+    def __init__(self, name: str, cuisine: str, menu: dict):
         self.name = name
         self.cuisine = cuisine
         self.menu = menu
 
 
 class FastFood(Restaurant):
-    def __init__(self, name=str, cuisine=str, menu=dict, drive_thru=bool):
+    def __init__(self, name: str, cuisine: str, menu: dict, drive_thru: bool):
         super().__init__(name, cuisine, menu)
         self.drive_thru = drive_thru
 
-    def order(self, name_food=str, quantity=int):
+    def order(self, name_food: str, quantity: int):
         if name_food in self.menu:
             price_item = self.menu[name_food]
             if quantity > 0 and quantity <= self.menu[name_food]:
