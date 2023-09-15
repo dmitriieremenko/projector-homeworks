@@ -22,13 +22,20 @@ CREATE TABLE "booking" (
   "room_id" integer,
   "start_date" date,
   "end_date" date,
-  "paid" boolean
+  "paid" boolean,
+  "review_for_host" boolean
+);
+
+CREATE TABLE "payments" (
+  "payment_id" integer PRIMARY KEY,
+  "booking_id" integer,
+  "amount" decimal,
+  "payment_date" date
 );
 
 CREATE TABLE "users_reviews" (
   "review_id" integer PRIMARY KEY,
-  "user_id_guest" integer,
-  "user_id_host" integer,
+  "booking_id" integer,
   "text_review" varchar,
   "rating" integer
 );
@@ -41,6 +48,6 @@ ALTER TABLE "booking" ADD FOREIGN KEY ("user_id_host") REFERENCES "users" ("user
 
 ALTER TABLE "booking" ADD FOREIGN KEY ("room_id") REFERENCES "rooms" ("room_id");
 
-ALTER TABLE "users_reviews" ADD FOREIGN KEY ("user_id_guest") REFERENCES "users" ("user_id");
+ALTER TABLE "payments" ADD FOREIGN KEY ("booking_id") REFERENCES "booking" ("booking_id");
 
-ALTER TABLE "users_reviews" ADD FOREIGN KEY ("user_id_host") REFERENCES "users" ("user_id");
+ALTER TABLE "users_reviews" ADD FOREIGN KEY ("booking_id") REFERENCES "booking" ("booking_id");
