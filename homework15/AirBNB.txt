@@ -18,12 +18,10 @@ Table rooms {
 Table booking {
   booking_id integer [primary key]
   user_id_guest integer [ref: > users.user_id]
-  user_id_host integer [ref: > users.user_id]
   room_id integer [ref: > rooms.room_id]
   start_date date
   end_date date
   paid boolean
-  review_for_host boolean
 }
 
 Table payments {

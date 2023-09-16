@@ -18,12 +18,10 @@ CREATE TABLE "rooms" (
 CREATE TABLE "booking" (
   "booking_id" integer PRIMARY KEY,
   "user_id_guest" integer,
-  "user_id_host" integer,
   "room_id" integer,
   "start_date" date,
   "end_date" date,
-  "paid" boolean,
-  "review_for_host" boolean
+  "paid" boolean
 );
 
 CREATE TABLE "payments" (
@@ -43,8 +41,6 @@ CREATE TABLE "users_reviews" (
 ALTER TABLE "rooms" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("user_id");
 
 ALTER TABLE "booking" ADD FOREIGN KEY ("user_id_guest") REFERENCES "users" ("user_id");
-
-ALTER TABLE "booking" ADD FOREIGN KEY ("user_id_host") REFERENCES "users" ("user_id");
 
 ALTER TABLE "booking" ADD FOREIGN KEY ("room_id") REFERENCES "rooms" ("room_id");
 
