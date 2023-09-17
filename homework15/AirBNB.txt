@@ -1,0 +1,39 @@
+Table users {
+  user_id integer [primary key]
+  name varchar
+  user_type varchar
+}
+
+Table rooms {
+  room_id integer [primary key]
+  user_id integer [ref: > users.user_id]
+  name_room varchar
+  residents integer
+  price decimal
+  air_conditioning boolean
+  refrigerator boolean
+  reservation boolean
+}
+
+Table booking {
+  booking_id integer [primary key]
+  user_id_guest integer [ref: > users.user_id]
+  room_id integer [ref: > rooms.room_id]
+  start_date date
+  end_date date
+  paid boolean
+}
+
+Table payments {
+  payment_id integer [primary key]
+  booking_id integer [ref: > booking.booking_id]
+  amount decimal
+  payment_date date
+}
+
+Table users_reviews {
+  review_id integer [primary key]
+  booking_id integer [ref: > booking.booking_id]
+  text_review varchar
+  rating integer
+}
