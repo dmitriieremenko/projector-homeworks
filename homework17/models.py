@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
+from sqlalchemy import UniqueConstraint
 from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -32,6 +33,11 @@ class StudentSubject(Base):
 
     student = relationship('Student', backref='student_subjects')
     subject = relationship('Subject', backref='student_subjects')
+
+    __table_args__ = (
+        UniqueConstraint('student_id', 'subject_id',
+                         name='uq_student_subject'),
+    )
 
 
 Base.metadata.create_all(engine)

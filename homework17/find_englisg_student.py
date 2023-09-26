@@ -1,23 +1,25 @@
-from sqlalchemy import create_engine, text
+from models import Student, Subject, StudentSubject
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+from sqlalchemy.orm import aliased
 
 db_uri = 'postgresql://postgres:533653@localhost:5432/students_bd'
 engine = create_engine(db_uri)
 
+Session = sessionmaker(bind=engine)
+session = Session()
 
-sql_query = text("""
-    SELECT students.name
-    FROM students
-    JOIN student_subjects ON students.id = student_subjects.student_id
-    JOIN subjects ON student_subjects.subject_id = subjects.id
-    WHERE subjects.name = :subject_name
-""")
+students_alias = aliased(Student)
+student_subjects_alias = aliased(StudentSubject)
 
-
-with engine.connect() as connection:
-    query_parameters = {"subject_name": "Англійська"}
-    english_students_result = connection.execute(sql_query, query_parameters)
-    english_students = english_students_result.fetchall()
-
+english_students = (
+    session.query(students_alias.name)
+    .join(student_subjects_alias,
+          students_alias.id == student_subjects_alias.student_id)
+    .join(Subject, student_subjects_alias.subject_id == Subject.id)
+    .filter(Subject.name == "Англійська")
+    .all()
+)
 
 for student_name in english_students:
     print(student_name[0])
