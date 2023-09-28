@@ -14,9 +14,9 @@ class TestBank(unittest.TestCase):
         saving_account.add_interest.assert_called_once()
         current_account.send_letter.assert_called_once()
 
-        # with patch('builtins.print') as mock_print:
-        #     current_account.send_letter.assert_called_once()
-        #     mock_print.assert_called_once()
+        with patch('builtins.print') as mock_print:
+            current_account.send_letter.assert_called_once()
+            mock_print.assert_called_once()
 
 
 unittest.main()
