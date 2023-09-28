@@ -49,8 +49,8 @@ class CurrentAccount(Account):
 
     def send_letter(self):
         if self._balance < 0 and abs(self._balance) > self.overdraft_limit:
-            print(f'For owner of account {self._account_number}:'
-                  ' Where is my money, Lebovsky?')
+            return 'Where is my money, Lebovsky?'
+        return ''
 
 
 class Bank:
